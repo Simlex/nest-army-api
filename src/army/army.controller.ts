@@ -28,7 +28,7 @@ export class ArmyController {
   @Get(':id')
   // This is used if you want to get the ID from the URL, and specify the type
   getArmy(@Param('id') id: string) {
-    return this.armyService.getArmy(+id);
+    return this.armyService.getArmy(+id); // The + sign is used to convert the string to a number - type casting
   }
 
   // Create an army
