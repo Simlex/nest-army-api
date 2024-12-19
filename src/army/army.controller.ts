@@ -4,9 +4,11 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Query,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CreateArmyDto } from './dto/create-army.dto';
 import { UpdateArmyDto } from './dto/update-army.dto';
@@ -27,13 +29,13 @@ export class ArmyController {
   // Get one army
   @Get(':id')
   // This is used if you want to get the ID from the URL, and specify the type
-  getArmy(@Param('id') id: string) {
-    return this.armyService.getArmy(+id); // The + sign is used to convert the string to a number - type casting
+  getArmy(@Param('id', ParseIntPipe) id: number) {
+    return this.armyService.getArmy(id);
   }
 
   // Create an army
   @Post()
-  createArmy(@Body() createArmyDto: CreateArmyDto) {
+  createArmy(@Body(new ValidationPipe()) createArmyDto: CreateArmyDto) {
     // This is used if you want to get the body of the request
     return this.armyService.createArmy(createArmyDto);
   }
