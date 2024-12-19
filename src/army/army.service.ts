@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateArmyDto } from './dto/create-army.dto';
 import { randomUUID } from 'crypto';
+import { AppError } from 'src/utils/custom-error';
 
 @Injectable()
 export class ArmyService {
@@ -46,7 +47,11 @@ export class ArmyService {
         const army = this.armies.find((army, index) => index === id);
 
         if (!army) {
-            throw new Error('Army not found');
+            throw new AppError({
+                message: 'Army not found',
+                statusCode: 404,
+                errorCode: 'ARMY_2003'
+            });
         }
 
         return army;
