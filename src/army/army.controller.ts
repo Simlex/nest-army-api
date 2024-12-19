@@ -8,11 +8,13 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
 import { CreateArmyDto } from './dto/create-army.dto';
 import { UpdateArmyDto } from './dto/update-army.dto';
 import { ArmyService } from './army.service';
+import { ColonelGuard } from 'src/colonel/colonel.guard';
 
 @Controller('army') // This would be the route - http://localhost:3000/army for this controller
 export class ArmyController {
@@ -35,6 +37,7 @@ export class ArmyController {
 
   // Create an army
   @Post()
+  @UseGuards(ColonelGuard) // This is used to protect the route from unauthorized access
   createArmy(@Body(new ValidationPipe()) createArmyDto: CreateArmyDto) {
     // This is used if you want to get the body of the request
     return this.armyService.createArmy(createArmyDto);
