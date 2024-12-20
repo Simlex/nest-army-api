@@ -32,33 +32,7 @@ jobs:
     - name: Set up SSH key
       run: |
           mkdir -p ~/.ssh
-          echo "-----BEGIN RSA PRIVATE KEY-----
-          MIIEpAIBAAKCAQEAwjtwTjFElpd7X9YGjblVNZ1YfdkrKAMpdzWASQ6VJib8ksxn
-          GsidQ7oCdQaIHvF44GtYpdZVZU63iDXFQqUmFS5SZSmo0vSRdGnyR8pghCcfOkxN
-          ueEv96LU57tWtywz+Wr4Y62iN9nRms4V4bHIaLffm4nec2MeQ5lkXzeOOrAcLofo
-          +PmnAJA0iZGLyW3776cB5/2abA6HY/+l57FAOZRcrsp2fG4G8KQeQoj7m18vwk8P
-          P02dBtZuNPDCrJSxCuLjylKMmMr8BOzOzNbyiLCQf12h23uqCoIkPVwsyFAEWSuv
-          zK2rYEGpxy45F9Azk9spTk3qeVuTtuLDYVs5wQIDAQABAoIBAFkoNZX+8Y/6uuwz
-          71Aw6ZcxwcQK4s98HBWXXmqqofYgYUH1R8K4oc/L24LiW6twhl7lh4ygRRS6vG5u
-          2DyOWFvSpom/RLqI/xej5k3j7MfcuW3mRqtzXbRbb0Vr7hMo3Da6Toha1KK0fo2D
-          2fF+zRKcjKz17UGkFulKyRMYClaPYTpNAw+CmMG1yG7qUO63H88Wy140+QizBmjI
-          AtLSB9IWNi6BeUyDLJ2OyRrbFKCsHZ2y+IXl1Wx4kR7nNWcv4ye/RKZPWIm5fvDT
-          g60P4c8yPQ4zebkXyMFvSaLUVrXv6lVTcJPW1wFoZ3oe75VSyuY//nJ7W4sLpZvE
-          bhXrsQECgYEA7wrSfP5lKc/1L4uqf8yDRbmKIeRHyoDWOsuyWrh6z5cUU2j3u4Tl
-          EBZpLizKQ0BUlfQ2CIqOI/Cd4C7yicv6b2c2ocVm5WiRwTihweDYASh/T4jcTQ9v
-          +FEJpP43pppGG6jarC1YBTPuM1vv6mB18nteh5SAmStXMZfxGTMwtpECgYEA0ALV
-          VJboZK3W6y8mm5T19Q3qeefP7Tq1mK6/RvTcvciUx+LMNHp0QBcJq0TyfVV2D1o0
-          2e/p2VjRkHQFlsvprOQulyedbrD3xnU78Pq0XTpolQ+5REiBa4IjwYdFmNtCN0ZL
-          gCkqAPQXAGI4MQPNInFqQM/wCY4nXrajoZl3yDECgYBlE+5tbCTayVSkBirSX2gi
-          05HVQvIYbuInenqwYdGMdhXiL0CRymARrWhMXiQoy8r4nYs7kVsJV3Vqlm94VQhQ
-          kxRG03HvD4iSa5/6m1i7JKSwvO5qp1xxY9LwMY7Wo+WBTKUqqQHPMWZH0Vhhguhc
-          4E3YhrLaEbmM/vKz9TFkAQKBgQCky2nZf0kT4kmfv5Y1slj90Q2PkODBED8ofGEb
-          xQhQ7uU4Suz/MniBAf9uCcyXESrcVNoEQzcgM2arq891vY0epRRoOkFWnatfNifL
-          7cMRDSIn3fIoL80gsFTFkPbJeAPIqM9N9M7LPJYwfqAH7PwKqpHEUTjZSR7VwZp3
-          f49PMQKBgQDK7JNUzRj8BmBejNTrSMHznfK7NaWgno+UUEmF4ELCy+Hk1rVyFXWQ
-          VZA/eL0XFNApP1ErIMVo+unwqqfE6yRs5/qJFBjsf7PfQZzDTP2vOzadhSLbs9Kv
-          cVAmlQWkkxmXaQl138DJgtJpBiLmdLWgd2KUnnjSyK+F/gBi8sYbJQ==
-          -----END RSA PRIVATE KEY-----" > ~/.ssh/deploy_key.pem
+          echo "$DEPLOY_KEY" > ~/.ssh/deploy_key.pem
           chmod 600 ~/.ssh/deploy_key.pem
           # Add EC2 instance to known hosts to avoid prompt
           ssh-keyscan -H 44.222.226.127 >> ~/.ssh/known_hosts
