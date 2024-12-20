@@ -32,8 +32,7 @@ jobs:
     - name: Set up SSH key
       run: |
           mkdir -p ~/.ssh
-          echo "
-          -----BEGIN RSA PRIVATE KEY-----
+          echo "-----BEGIN RSA PRIVATE KEY-----
           MIIEpAIBAAKCAQEAwjtwTjFElpd7X9YGjblVNZ1YfdkrKAMpdzWASQ6VJib8ksxn
           GsidQ7oCdQaIHvF44GtYpdZVZU63iDXFQqUmFS5SZSmo0vSRdGnyR8pghCcfOkxN
           ueEv96LU57tWtywz+Wr4Y62iN9nRms4V4bHIaLffm4nec2MeQ5lkXzeOOrAcLofo
@@ -59,8 +58,7 @@ jobs:
           f49PMQKBgQDK7JNUzRj8BmBejNTrSMHznfK7NaWgno+UUEmF4ELCy+Hk1rVyFXWQ
           VZA/eL0XFNApP1ErIMVo+unwqqfE6yRs5/qJFBjsf7PfQZzDTP2vOzadhSLbs9Kv
           cVAmlQWkkxmXaQl138DJgtJpBiLmdLWgd2KUnnjSyK+F/gBi8sYbJQ==
-          -----END RSA PRIVATE KEY-----
-          " > ~/.ssh/deploy_key.pem
+          -----END RSA PRIVATE KEY-----" > ~/.ssh/deploy_key.pem
           chmod 600 ~/.ssh/deploy_key.pem
           # Add EC2 instance to known hosts to avoid prompt
           ssh-keyscan -H 44.222.226.127 >> ~/.ssh/known_hosts
