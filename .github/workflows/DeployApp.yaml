@@ -24,16 +24,29 @@ jobs:
     - name: Build Application
       run: npm run build
 
+    - name: Install SSH client
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y openssh-client
+    
+    - name: Set up SSH key
+      run: |
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_KEY" > ~/.ssh/deploy_key.pem
+          chmod 600 ~/.ssh/deploy_key.pem
+          # Add EC2 instance to known hosts to avoid prompt
+          ssh-keyscan -H 44.222.226.127 >> ~/.ssh/known_hosts
+
     - name: Deploy to EC2
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         # Copy application to EC2 instance
-        scp -i "your-key.pem" -o StrictHostKeyChecking=no -r ./dist ec2-user@44.222.226.127:/var/www/nest-army-api
+        scp -i ~/.ssh/deploy_key.pem -o StrictHostKeyChecking=no -r ./dist ec2-user@44.222.226.127:/var/www/nest-army-api
         
         # Install dependencies and start with PM2
-        ssh -i "your-key.pem" ec2-user@44.222.226.127 << EOF
+        ssh -i ~/.ssh/deploy_key.pem ec2-user@44.222.226.127 << EOF
           cd /var/www/nest-army-api
           npm install --only=prod
           pm2 stop all || true
