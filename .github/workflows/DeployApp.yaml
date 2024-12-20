@@ -30,10 +30,10 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         # Copy application to EC2 instance
-        scp -i "your-key.pem" -o StrictHostKeyChecking=no -r ./dist ec2-user@44.222.226.127:/var/www/nest-army-api
+        scp -i "/Users/mac/Documents/personal/DeployKey.pem" -o StrictHostKeyChecking=no -r ./dist ec2-user@44.222.226.127:/var/www/nest-army-api
         
         # Install dependencies and start with PM2
-        ssh -i "your-key.pem" ec2-user@44.222.226.127 << EOF
+        ssh -i "/Users/mac/Documents/personal/DeployKey.pem" ec2-user@44.222.226.127 << EOF
           cd /var/www/nest-army-api
           npm install --only=prod
           pm2 stop all || true
