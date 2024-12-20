@@ -3,7 +3,7 @@ name: Build and Deploy BackendApp to ECS
 on:
   push:
     branches:
-      - feat/video-cicd-ecs
+      - production
 
 env:
   # Setting an environment variable with the value of a configuration variable
