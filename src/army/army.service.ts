@@ -72,17 +72,15 @@ export class ArmyService {
             id: randomUUID()
         };
 
-        this.userRepository.save({
+        const createdUser = this.userRepository.save({
             username: newArmy.name,
             password: 'password',
             fullName: newArmy.type,
             // createdAt: new Date(),
             // updatedAt: new Date(),
             authStrategy: 'local'
-        })
+        });
 
-        this.armies.push(newArmy);
-
-        return newArmy;
+        return createdUser;
     }
 }
